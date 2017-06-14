@@ -23,8 +23,8 @@ class Player: SKSpriteNode {
     // Hacia donde miraba el personaje antes de hacer una acción
     var lastDirection: CharacterDirection?
     
-    // Velocidad de movimiento media
-    var defaultSpeed = CGFloat(2.4)
+    // Velocidad de movimiento por defecto
+    var defaultSpeed = CGFloat(5.0)
     // Velocidad al arrancar
     var walkingSpeed = CGFloat(0.0)
     //Instante
@@ -40,16 +40,15 @@ class Player: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         walkingSpeed = defaultSpeed
         lastDirection = .Right
-        self.zPosition = 10        
+        self.zPosition = 10
+        
+        //Fisicas del jugador
+        //self.physicsBody = SKPhysicsBody(circleOfRadius: max(self.size.width / 2,
+        //                                                       self.size.height / 2))
     }
     
     // Animacion de andar
     func walk(directions: [CharacterDirection]) {
-        var walkingSpeed: CGFloat = 2.0
-        
-        if directions.count == 2 {
-            walkingSpeed = walkingSpeed / sqrt(2.0)
-        }
         
         // Cogemos la direccion del sprite y se mueve
         if directions.index(of: .Left) != nil {
@@ -99,12 +98,14 @@ class Player: SKSpriteNode {
     
     //Animacion saltar
     func jump(){
+        //Sonido saltar
+        let jumpSound = SKAction.playSoundFileNamed("Jump.mp3", waitForCompletion: false)
         //Sube 20 puntos
         let jumpUpAction = SKAction.moveBy(x: 0, y:20, duration:0.2)
         //Baja 20 puntos
         let jumpDownAction = SKAction.moveBy(x: 0, y:-20, duration:0.2)
         //Secuencia completa de salto
-        let jumpSequence = SKAction.sequence([jumpUpAction, jumpDownAction])
+        let jumpSequence = SKAction.sequence([jumpSound, jumpUpAction, jumpDownAction])
         //Ejecuta la secuencia
         run(jumpSequence)
     }

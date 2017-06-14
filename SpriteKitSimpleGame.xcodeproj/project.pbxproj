@@ -24,7 +24,20 @@
 		9CA11F561ED744340036F700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA11F541ED744340036F700 /* LaunchScreen.storyboard */; };
 		9CA11F611ED744340036F700 /* SpriteKitSimpleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA11F601ED744340036F700 /* SpriteKitSimpleGameTests.swift */; };
 		9CA11F6C1ED744350036F700 /* SpriteKitSimpleGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA11F6B1ED744350036F700 /* SpriteKitSimpleGameUITests.swift */; };
-		9CA11F7A1ED747A30036F700 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 9CA11F791ED747A30036F700 /* Sounds */; };
+		9CDA62181EF0D24F00D32B54 /* Bosque.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */; };
+		9CDA62191EF0D24F00D32B54 /* Cementerio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */; };
+		9CDA621A1EF0D24F00D32B54 /* Coleccionable.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620C1EF0D24F00D32B54 /* Coleccionable.mp3 */; };
+		9CDA621B1EF0D24F00D32B54 /* Congratulations.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620D1EF0D24F00D32B54 /* Congratulations.mp3 */; };
+		9CDA621C1EF0D24F00D32B54 /* Desierto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620E1EF0D24F00D32B54 /* Desierto.mp3 */; };
+		9CDA621D1EF0D24F00D32B54 /* Falling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA620F1EF0D24F00D32B54 /* Falling.mp3 */; };
+		9CDA621E1EF0D25000D32B54 /* Futuro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62101EF0D24F00D32B54 /* Futuro.mp3 */; };
+		9CDA621F1EF0D25000D32B54 /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */; };
+		9CDA62201EF0D25000D32B54 /* Hielo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */; };
+		9CDA62211EF0D25000D32B54 /* Hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62131EF0D24F00D32B54 /* Hit.mp3 */; };
+		9CDA62221EF0D25000D32B54 /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62141EF0D24F00D32B54 /* Jump.mp3 */; };
+		9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */; };
+		9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */; };
+		9CDA62251EF0D25000D32B54 /* Win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62171EF0D24F00D32B54 /* Win.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +81,20 @@
 		9CA11F671ED744350036F700 /* SpriteKitSimpleGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpriteKitSimpleGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA11F6B1ED744350036F700 /* SpriteKitSimpleGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitSimpleGameUITests.swift; sourceTree = "<group>"; };
 		9CA11F6D1ED744350036F700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CA11F791ED747A30036F700 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../../../../Desktop/SpriteKitSimpleGameResources/Sounds; sourceTree = "<group>"; };
+		9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Bosque.mp3; path = ../../../../../Desktop/Recursos/Musica/Bosque.mp3; sourceTree = "<group>"; };
+		9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Cementerio.mp3; path = ../../../../../Desktop/Recursos/Musica/Cementerio.mp3; sourceTree = "<group>"; };
+		9CDA620C1EF0D24F00D32B54 /* Coleccionable.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Coleccionable.mp3; path = ../../../../../Desktop/Recursos/Musica/Coleccionable.mp3; sourceTree = "<group>"; };
+		9CDA620D1EF0D24F00D32B54 /* Congratulations.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Congratulations.mp3; path = ../../../../../Desktop/Recursos/Musica/Congratulations.mp3; sourceTree = "<group>"; };
+		9CDA620E1EF0D24F00D32B54 /* Desierto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Desierto.mp3; path = ../../../../../Desktop/Recursos/Musica/Desierto.mp3; sourceTree = "<group>"; };
+		9CDA620F1EF0D24F00D32B54 /* Falling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Falling.mp3; path = ../../../../../Desktop/Recursos/Musica/Falling.mp3; sourceTree = "<group>"; };
+		9CDA62101EF0D24F00D32B54 /* Futuro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Futuro.mp3; path = ../../../../../Desktop/Recursos/Musica/Futuro.mp3; sourceTree = "<group>"; };
+		9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = GameOver.mp3; path = ../../../../../Desktop/Recursos/Musica/GameOver.mp3; sourceTree = "<group>"; };
+		9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Hielo.mp3; path = ../../../../../Desktop/Recursos/Musica/Hielo.mp3; sourceTree = "<group>"; };
+		9CDA62131EF0D24F00D32B54 /* Hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Hit.mp3; path = ../../../../../Desktop/Recursos/Musica/Hit.mp3; sourceTree = "<group>"; };
+		9CDA62141EF0D24F00D32B54 /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Jump.mp3; path = ../../../../../Desktop/Recursos/Musica/Jump.mp3; sourceTree = "<group>"; };
+		9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuMusic.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuMusic.mp3; sourceTree = "<group>"; };
+		9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuSelectionClick.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuSelectionClick.mp3; sourceTree = "<group>"; };
+		9CDA62171EF0D24F00D32B54 /* Win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Win.mp3; path = ../../../../../Desktop/Recursos/Musica/Win.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA11F441ED744340036F700 /* SpriteKitSimpleGame */,
+				9CDA61CD1EF0CEA500D32B54 /* Sounds */,
 				9CA11F5F1ED744340036F700 /* SpriteKitSimpleGameTests */,
 				9CA11F6A1ED744350036F700 /* SpriteKitSimpleGameUITests */,
 				9CA11F431ED744340036F700 /* Products */,
@@ -152,7 +179,6 @@
 			children = (
 				9C61BD2A1EE0DE2D0075F7C1 /* Classes */,
 				9C61BD291EE0DE1F0075F7C1 /* Scenes */,
-				9CA11F791ED747A30036F700 /* Sounds */,
 				9CA11F451ED744340036F700 /* AppDelegate.swift */,
 				9CA11F4D1ED744340036F700 /* GameViewController.swift */,
 				9CA11F4F1ED744340036F700 /* Main.storyboard */,
@@ -180,6 +206,28 @@
 				9CA11F6D1ED744350036F700 /* Info.plist */,
 			);
 			path = SpriteKitSimpleGameUITests;
+			sourceTree = "<group>";
+		};
+		9CDA61CD1EF0CEA500D32B54 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */,
+				9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */,
+				9CDA620C1EF0D24F00D32B54 /* Coleccionable.mp3 */,
+				9CDA620D1EF0D24F00D32B54 /* Congratulations.mp3 */,
+				9CDA620E1EF0D24F00D32B54 /* Desierto.mp3 */,
+				9CDA620F1EF0D24F00D32B54 /* Falling.mp3 */,
+				9CDA62101EF0D24F00D32B54 /* Futuro.mp3 */,
+				9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */,
+				9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */,
+				9CDA62131EF0D24F00D32B54 /* Hit.mp3 */,
+				9CDA62141EF0D24F00D32B54 /* Jump.mp3 */,
+				9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */,
+				9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */,
+				9CDA62171EF0D24F00D32B54 /* Win.mp3 */,
+			);
+			name = Sounds;
+			path = SpriteKitSimpleGame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,14 +340,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CDA62221EF0D25000D32B54 /* Jump.mp3 in Resources */,
+				9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */,
 				9CA11F511ED744340036F700 /* Main.storyboard in Resources */,
+				9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */,
+				9CDA621D1EF0D24F00D32B54 /* Falling.mp3 in Resources */,
+				9CDA621C1EF0D24F00D32B54 /* Desierto.mp3 in Resources */,
+				9CDA621E1EF0D25000D32B54 /* Futuro.mp3 in Resources */,
+				9CDA621F1EF0D25000D32B54 /* GameOver.mp3 in Resources */,
+				9CDA621B1EF0D24F00D32B54 /* Congratulations.mp3 in Resources */,
 				9C451D9D1EE4782E00F65A97 /* GameLevel1.sks in Resources */,
-				9CA11F7A1ED747A30036F700 /* Sounds in Resources */,
+				9CDA621A1EF0D24F00D32B54 /* Coleccionable.mp3 in Resources */,
+				9CDA62201EF0D25000D32B54 /* Hielo.mp3 in Resources */,
 				9C4213C01EE2E99200A7B99F /* GameLevel1TileSet.sks in Resources */,
+				9CDA62191EF0D24F00D32B54 /* Cementerio.mp3 in Resources */,
+				9CDA62211EF0D25000D32B54 /* Hit.mp3 in Resources */,
 				9C56F0A01EE7968600832A4D /* Player.atlas in Resources */,
 				9C4D09311EE5909500E895BC /* Assets.xcassets in Resources */,
 				9C61BD2D1EE0DEB40075F7C1 /* MainMenu.sks in Resources */,
+				9CDA62251EF0D25000D32B54 /* Win.mp3 in Resources */,
 				9CA11F561ED744340036F700 /* LaunchScreen.storyboard in Resources */,
+				9CDA62181EF0D24F00D32B54 /* Bosque.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

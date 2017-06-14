@@ -11,9 +11,12 @@
 import SpriteKit
 
 class MenuScene: SKScene{
-    
     override func didMove(to view: SKView) {
-
+        //Sonido
+        let backgroundMusic = SKAudioNode(fileNamed: "MenuMusic.mp3")
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
+       
     }
     
     //Funcion para localizar si tocamos en New Game (Start) y ejecutar el startGame()
@@ -27,13 +30,11 @@ class MenuScene: SKScene{
     }
     
     private func startGame() {
-//        let gameScene = GameScene(size: view!.bounds.size)
-//        gameScene.scaleMode = .aspectFill
-//        let transition = SKTransition.doorsOpenVertical(withDuration: 2)
-//        view!.presentScene(gameScene, transition: transition)
-        
         let level1 = GameScene(fileNamed: "GameLevel1")
         let transition = SKTransition.doorsOpenVertical(withDuration: 2)
+        let newGameSound = SKAction.playSoundFileNamed("MenuSelectionClick.mp3", waitForCompletion: true)
+        run(newGameSound)
         self.scene!.view?.presentScene(level1!, transition: transition)
     }
+    
 }
