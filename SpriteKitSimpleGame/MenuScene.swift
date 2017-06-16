@@ -16,7 +16,6 @@ class MenuScene: SKScene{
         let backgroundMusic = SKAudioNode(fileNamed: "MenuMusic.mp3")
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
-       
     }
     
     //Funcion para localizar si tocamos en New Game (Start) y ejecutar el startGame()
@@ -30,7 +29,7 @@ class MenuScene: SKScene{
     }
     
     private func startGame() {
-        let level1 = GameScene(fileNamed: "GameLevel1")
+        let level1 = GameScene(fileNamed: "GameLevel_1")
         let transition = SKTransition.doorsOpenVertical(withDuration: 2)
         let newGameSound = SKAction.playSoundFileNamed("MenuSelectionClick.mp3", waitForCompletion: true)
         run(newGameSound)

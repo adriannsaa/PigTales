@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var level1Signals: SKTileMapNode!
     var cam: SKCameraNode!
     var left_control,right_control,jump_control: SKSpriteNode!
+    var fondo: SKSpriteNode!
     
     //Fisicas
     enum CollisionTypes: UInt32 {
@@ -25,6 +26,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        //Gravedad a cero
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        
+        //Nodos
         loadSceneNodes()
         
         //Transparencia inicial de los controles
@@ -32,18 +37,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         right_control.alpha = 0.4
         jump_control.alpha = 0.4
         
-        //Fisicas
-//        player.physicsBody?.categoryBitMask = CollisionTypes.physPlayer.rawValue
-//        player.physicsBody?.contactTestBitMask = CollisionTypes.physTerrain.rawValue
-//        player.physicsBody?.collisionBitMask = CollisionTypes.physTerrain.rawValue
-//        player.physicsBody?.friction = 0
-//        player.physicsBody?.isDynamic = true
-//        
-//        self.physicsWorld.contactDelegate = self
-//        self.physicsBody = SKPhysicsBody(circleOfRadius: max(self.size.width / 2,
-//                                                               self.size.height / 2))
-//        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-//        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        //Ponemos la gravedad normal después de cargar todo (Para que el personaje caiga)
+        delay(seconds: 2.0){
+            self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
+        }
+        
         
     }
     
@@ -51,33 +49,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func loadSceneNodes() {
 
         //Level
-        guard let level1Background = childNode(withName: "level1")
-            as? SKTileMapNode else {
-                fatalError("Background node not loaded")
+        guard let fondo = childNode(withName: "FondoRectangulo")
+            as? SKSpriteNode else {
+                fatalError("Fondo node not loaded")
         }
-        self.level1Background = level1Background
-//        self.physicsBody = SKPhysicsBody(rectangleOf: level1Background.mapSize, center: level1Background.centerOfTile(atColumn: 12, row: 4))
-        
-        guard let level1Coleccionable = childNode(withName: "coleccionables")
-            as? SKTileMapNode else {
-                fatalError("Coleccionables node not loaded")
-        }
-        self.level1Coleccionable = level1Coleccionable
-        
-        guard let level1Signals = childNode(withName: "decorado1")
-            as? SKTileMapNode else {
-                fatalError("Señales node not loaded")
-        }
-        self.level1Signals = level1Signals
-
+        self.fondo = fondo
+        //Fisica del fondo (Límites del mapa)
+        let fondoPath = CGMutablePath()
+        fondoPath.move(to: CGPoint(x: -fondo.size.width/2, y: -fondo.size.height/2))
+        fondoPath.addLine(to: CGPoint(x: fondo.size.width/2, y: -fondo.size.height/2))
+        fondoPath.addLine(to: CGPoint(x: fondo.size.width/2, y: fondo.size.height/2))
+        fondoPath.addLine(to: CGPoint(x: -fondo.size.width/2, y: fondo.size.height/2))
+        fondoPath.addLine(to: CGPoint(x: -fondo.size.width/2, y: -fondo.size.height/2))
+        fondo.physicsBody = SKPhysicsBody(edgeLoopFrom: fondoPath)
+        fondo.physicsBody?.isDynamic = false
         
         //Jugador
         player = Player(named: "vida3_1")
-        player.position = CGPoint(x: -1340, y: -265)
+        player.position = CGPoint(x: -1900, y: -350)
         self.addChild(player)
-//        player.physicsBody = SKPhysicsBody(circleOfRadius: max(player.size.width / 2,
-//                                                                          player.size.height / 2))
-//        player.physicsBody?.affectedByGravity=false
 
         //Camara
         guard let cam = childNode(withName: "camera1")
@@ -116,12 +106,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         //Posicion de la camara (Un poco adelantada para ver el mapa)
-        camera?.position = CGPoint(x:player.position.x+75 , y:player.position.y+75)
+        camera?.position = CGPoint(x:player.position.x+150 , y:player.position.y+100)
         
         //Posicion de los controles
-        left_control.position = CGPoint(x:player.position.x-340 , y:player.position.y-150)
-        right_control.position = CGPoint(x:player.position.x-140 , y:player.position.y-150)
-        jump_control.position = CGPoint(x:player.position.x+475 , y:player.position.y-150)
+        left_control.position = CGPoint(x:player.position.x-140 , y:player.position.y-50)
+        right_control.position = CGPoint(x:player.position.x-40 , y:player.position.y-50)
+        jump_control.position = CGPoint(x:player.position.x+375 , y:player.position.y-50)
         
         //Movimiento del jugador
         if pressedButtons.index(of: left_control) != nil {
@@ -133,51 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if pressedButtons.index(of: jump_control) != nil {
             player.jump()
         }
-        
-        //Controlar las posiciones,extraer el "tile" del mapa y controlar sus fisicas
-        let positionPlayer = player.position
-        let column = level1Background.tileColumnIndex(fromPosition: positionPlayer)
-        let row = level1Background.tileRowIndex(fromPosition: positionPlayer)
-        let columnColect = level1Coleccionable.tileColumnIndex(fromPosition: positionPlayer)
-        let rowColect = level1Coleccionable.tileRowIndex(fromPosition: positionPlayer)
-        let tile = level1Background.tileDefinition(atColumn: column, row: row)
-        let tileColect = level1Coleccionable.tileDefinition(atColumn: columnColect, row: rowColect)
-        let tileSize = tile?.size
 
-        let isTerrain = tile?.userData?.value(forKey: "isTerrain")
-        let isElefante = tileColect?.userData?.value(forKey: "isElefante")
-        let isJirafa = tileColect?.userData?.value(forKey: "isJirafa")
-        let isMono = tileColect?.userData?.value(forKey: "isMono")
-        let isPanda = tileColect?.userData?.value(forKey: "isPanda")
-        
-        
-        for col in 0..<level1Background.numberOfColumns {
-            
-            for row in 0..<level1Background.numberOfRows {
-                if isTerrain as? Bool == true{
-                    print("terreno")
-                }                
-                if positionPlayer == level1Background.centerOfTile(atColumn: 4, row: 8){
-                    print("PANDA")
-                }
-                if positionPlayer == level1Background.centerOfTile(atColumn: 13, row: 3){
-                    print("ELEFANTE")
-                }
-                if positionPlayer == level1Background.centerOfTile(atColumn: 20, row: 8){
-                    print("MONO")
-                }
-                if positionPlayer == level1Background.centerOfTile(atColumn: 18, row: 3){
-                    print("JIRAFA")
-                }
-                if positionPlayer == level1Background.centerOfTile(atColumn: 2, row: 3){
-                    print("!!!!! START !!!!!!!")
-                }
-                if positionPlayer == level1Background.centerOfTile(atColumn: 2, row: 3){
-                    print("!!!!! START !!!!!!!")
-                }
-
-            }
-        }
         
     }
     

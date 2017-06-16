@@ -43,8 +43,7 @@ class Player: SKSpriteNode {
         self.zPosition = 10
         
         //Fisicas del jugador
-        //self.physicsBody = SKPhysicsBody(circleOfRadius: max(self.size.width / 2,
-        //                                                       self.size.height / 2))
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
     }
     
     // Animacion de andar
