@@ -19,6 +19,7 @@
 		9C56F0A21EE79C3100832A4D /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56F0A11EE79C3100832A4D /* GameControls.swift */; };
 		9C5B32C41EE2530000C8B835 /* GameLevel1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5B32C31EE2530000C8B835 /* GameLevel1Scene.swift */; };
 		9C61BD2D1EE0DEB40075F7C1 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C61BD2C1EE0DEB40075F7C1 /* MainMenu.sks */; };
+		9C64C1E61EF49D30003F5B58 /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C64C1E51EF49D30003F5B58 /* Jump.mp3 */; };
 		9CA11F461ED744340036F700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA11F451ED744340036F700 /* AppDelegate.swift */; };
 		9CA11F4C1ED744340036F700 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA11F4B1ED744340036F700 /* GameScene.swift */; };
 		9CA11F4E1ED744340036F700 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA11F4D1ED744340036F700 /* GameViewController.swift */; };
@@ -36,7 +37,6 @@
 		9CDA621F1EF0D25000D32B54 /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */; };
 		9CDA62201EF0D25000D32B54 /* Hielo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */; };
 		9CDA62211EF0D25000D32B54 /* Hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62131EF0D24F00D32B54 /* Hit.mp3 */; };
-		9CDA62221EF0D25000D32B54 /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62141EF0D24F00D32B54 /* Jump.mp3 */; };
 		9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */; };
 		9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */; };
 		9CDA62251EF0D25000D32B54 /* Win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62171EF0D24F00D32B54 /* Win.mp3 */; };
@@ -72,6 +72,7 @@
 		9C56F0A11EE79C3100832A4D /* GameControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
 		9C5B32C31EE2530000C8B835 /* GameLevel1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel1Scene.swift; sourceTree = "<group>"; };
 		9C61BD2C1EE0DEB40075F7C1 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		9C64C1E51EF49D30003F5B58 /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Jump.mp3; path = ../../../../../Desktop/Recursos/Musica/Jump.mp3; sourceTree = "<group>"; };
 		9CA11F421ED744340036F700 /* SpriteKitSimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpriteKitSimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA11F451ED744340036F700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA11F4B1ED744340036F700 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = GameOver.mp3; path = ../../../../../Desktop/Recursos/Musica/GameOver.mp3; sourceTree = "<group>"; };
 		9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Hielo.mp3; path = ../../../../../Desktop/Recursos/Musica/Hielo.mp3; sourceTree = "<group>"; };
 		9CDA62131EF0D24F00D32B54 /* Hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Hit.mp3; path = ../../../../../Desktop/Recursos/Musica/Hit.mp3; sourceTree = "<group>"; };
-		9CDA62141EF0D24F00D32B54 /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Jump.mp3; path = ../../../../../Desktop/Recursos/Musica/Jump.mp3; sourceTree = "<group>"; };
 		9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuMusic.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuMusic.mp3; sourceTree = "<group>"; };
 		9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuSelectionClick.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuSelectionClick.mp3; sourceTree = "<group>"; };
 		9CDA62171EF0D24F00D32B54 /* Win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Win.mp3; path = ../../../../../Desktop/Recursos/Musica/Win.mp3; sourceTree = "<group>"; };
@@ -220,6 +220,7 @@
 				9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */,
 				9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */,
 				9CDA620C1EF0D24F00D32B54 /* Coleccionable.mp3 */,
+				9C64C1E51EF49D30003F5B58 /* Jump.mp3 */,
 				9CDA620D1EF0D24F00D32B54 /* Congratulations.mp3 */,
 				9CDA620E1EF0D24F00D32B54 /* Desierto.mp3 */,
 				9CDA620F1EF0D24F00D32B54 /* Falling.mp3 */,
@@ -227,7 +228,6 @@
 				9CDA62111EF0D24F00D32B54 /* GameOver.mp3 */,
 				9CDA62121EF0D24F00D32B54 /* Hielo.mp3 */,
 				9CDA62131EF0D24F00D32B54 /* Hit.mp3 */,
-				9CDA62141EF0D24F00D32B54 /* Jump.mp3 */,
 				9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */,
 				9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */,
 				9CDA62171EF0D24F00D32B54 /* Win.mp3 */,
@@ -346,7 +346,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CDA62221EF0D25000D32B54 /* Jump.mp3 in Resources */,
 				9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */,
 				9CA11F511ED744340036F700 /* Main.storyboard in Resources */,
 				9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */,
@@ -363,6 +362,7 @@
 				9CDA62191EF0D24F00D32B54 /* Cementerio.mp3 in Resources */,
 				9CDA62211EF0D25000D32B54 /* Hit.mp3 in Resources */,
 				9C56F0A01EE7968600832A4D /* Player.atlas in Resources */,
+				9C64C1E61EF49D30003F5B58 /* Jump.mp3 in Resources */,
 				9C4D09311EE5909500E895BC /* Assets.xcassets in Resources */,
 				9C61BD2D1EE0DEB40075F7C1 /* MainMenu.sks in Resources */,
 				9CDA62251EF0D25000D32B54 /* Win.mp3 in Resources */,

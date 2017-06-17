@@ -37,13 +37,13 @@ class Player: SKSpriteNode {
         self.init(texture: texture)
         self.setScale(2.0)
         
-        self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         walkingSpeed = defaultSpeed
         lastDirection = .Right
         self.zPosition = 10
         
         //Fisicas del jugador
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width,height: self.size.height))
+        self.physicsBody?.allowsRotation = false
     }
     
     // Animacion de andar
@@ -97,16 +97,12 @@ class Player: SKSpriteNode {
     
     //Animacion saltar
     func jump(){
-        //Sonido saltar
-        let jumpSound = SKAction.playSoundFileNamed("Jump.mp3", waitForCompletion: false)
-        //Sube 20 puntos
-        let jumpUpAction = SKAction.moveBy(x: 0, y:20, duration:0.2)
-        //Baja 20 puntos
-        let jumpDownAction = SKAction.moveBy(x: 0, y:-20, duration:0.2)
-        //Secuencia completa de salto
-        let jumpSequence = SKAction.sequence([jumpSound, jumpUpAction, jumpDownAction])
-        //Ejecuta la secuencia
-        run(jumpSequence)
+        let jumpSound = SKAction.playSoundFileNamed("Jump.mp3", waitForCompletion: true)
+        if self.physicsBody?.velocity.dy == 0 {
+            run(jumpSound)
+            self.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 500))
+        }
+        
     }
     
 }

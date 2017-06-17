@@ -8,26 +8,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Scene Nodes
     var player: Player!
-    //var controls: GameControls!
-    var level1Background: SKTileMapNode!
-    var level1Coleccionable: SKTileMapNode!
     var level1Signals: SKTileMapNode!
     var cam: SKCameraNode!
     var left_control,right_control,jump_control: SKSpriteNode!
-    var fondo: SKSpriteNode!
+    var fondo,finish,elefanteColec,monoColec,jirafaColec,pandaColec: SKSpriteNode!
     
     //Fisicas
-    enum CollisionTypes: UInt32 {
-        case physPlayer = 1
-        case physWall = 2
-        case physTerrain = 4
-        case physWater = 8
-        case physFinish = 16
+    struct PhysicsCategory{
+        static let PhysNone: UInt32 = 0
+        static let PhysPlayer: UInt32 = 0b1 //1
+        static let PhysTerrain: UInt32 = 0b10 //2
+        static let PhysWater: UInt32 = 0b100 //4
+        static let PhysColeccionable: UInt32 = 0b1000 //8
+        static let PhysFinish: UInt32 = 0b10000 //16
     }
     
     override func didMove(to view: SKView) {
         //Gravedad a cero
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        //Delegar los contactos en el engine
+        physicsWorld.contactDelegate = self
         
         //Nodos
         loadSceneNodes()
@@ -48,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Creacion de todos los nodos para luego cargarlos todos juntos
     func loadSceneNodes() {
 
-        //Level
+        //LEVEL
         guard let fondo = childNode(withName: "FondoRectangulo")
             as? SKSpriteNode else {
                 fatalError("Fondo node not loaded")
@@ -64,19 +64,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fondo.physicsBody = SKPhysicsBody(edgeLoopFrom: fondoPath)
         fondo.physicsBody?.isDynamic = false
         
-        //Jugador
-        player = Player(named: "vida3_1")
-        player.position = CGPoint(x: -1900, y: -350)
-        self.addChild(player)
+        //Meta
+        guard let finish = childNode(withName: "FinishSign")
+            as? SKSpriteNode else {
+                fatalError("Finish node not loaded")
+        }
+        self.finish = finish
+        finish.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: finish.size.width/2,
+                                                               height: finish.size.height/2))
+        finish.physicsBody?.isDynamic = false
+        finish.physicsBody?.usesPreciseCollisionDetection = true
+        finish.physicsBody?.categoryBitMask = PhysicsCategory.PhysFinish
+        finish.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        //Coleccionables
+        guard let elefanteColec = childNode(withName: "elefante")
+            as? SKSpriteNode else {
+                fatalError("Elefante node not loaded")
+        }
+        self.elefanteColec = elefanteColec
+        elefanteColec.physicsBody = SKPhysicsBody(circleOfRadius: elefanteColec.size.width/2)
+        elefanteColec.physicsBody?.isDynamic = false
+        elefanteColec.physicsBody?.usesPreciseCollisionDetection = true
+        elefanteColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        elefanteColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        guard let monoColec = childNode(withName: "mono")
+            as? SKSpriteNode else {
+                fatalError("Mono node not loaded")
+        }
+        self.monoColec = monoColec
+        monoColec.physicsBody = SKPhysicsBody(circleOfRadius: monoColec.size.width/2)
+        monoColec.physicsBody?.isDynamic = false
+        monoColec.physicsBody?.usesPreciseCollisionDetection = true
+        monoColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        monoColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        guard let jirafaColec = childNode(withName: "jirafa")
+            as? SKSpriteNode else {
+                fatalError("Jirafa node not loaded")
+        }
+        self.jirafaColec = jirafaColec
+        jirafaColec.physicsBody = SKPhysicsBody(circleOfRadius: jirafaColec.size.width/2)
+        jirafaColec.physicsBody?.isDynamic = false
+        jirafaColec.physicsBody?.usesPreciseCollisionDetection = true
+        jirafaColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        jirafaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        guard let pandaColec = childNode(withName: "panda")
+            as? SKSpriteNode else {
+                fatalError("Panda node not loaded")
+        }
+        self.pandaColec = pandaColec
+        pandaColec.physicsBody = SKPhysicsBody(circleOfRadius: pandaColec.size.width/2)
+        pandaColec.physicsBody?.isDynamic = false
+        pandaColec.physicsBody?.usesPreciseCollisionDetection = true
+        pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        pandaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
 
-        //Camara
+        
+        //JUGADOR
+        player = Player(named: "vida3_1")
+        player.position = CGPoint(x: -1800, y: -300)
+        self.addChild(player)
+        //Jugador contact/collision
+        player.physicsBody?.usesPreciseCollisionDetection = true
+        player.physicsBody?.categoryBitMask = PhysicsCategory.PhysPlayer
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.PhysFinish | PhysicsCategory.PhysColeccionable
+
+        //CAMARA
         guard let cam = childNode(withName: "camera1")
             as? SKCameraNode else {
                 fatalError("Camera node not loaded")
         }
         self.camera = cam
 
-        //Controles
+        //CONTROLES
         guard let left_control = childNode(withName: "left_control")
             as? SKSpriteNode else {
                 fatalError("Left control node not loaded")
@@ -95,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         self.jump_control = jump_control
         
-        //Sonido
+        //SONIDO
         let backgroundMusic = SKAudioNode(fileNamed: "Bosque.mp3")
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
@@ -106,12 +169,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         //Posicion de la camara (Un poco adelantada para ver el mapa)
-        camera?.position = CGPoint(x:player.position.x+150 , y:player.position.y+100)
+        camera?.position = CGPoint(x:player.position.x+150 , y:player.position.y+30)
         
         //Posicion de los controles
-        left_control.position = CGPoint(x:player.position.x-140 , y:player.position.y-50)
-        right_control.position = CGPoint(x:player.position.x-40 , y:player.position.y-50)
-        jump_control.position = CGPoint(x:player.position.x+375 , y:player.position.y-50)
+        left_control.position = CGPoint(x:player.position.x-140 , y:player.position.y-110)
+        right_control.position = CGPoint(x:player.position.x+40 , y:player.position.y-110)
+        jump_control.position = CGPoint(x:player.position.x+375 , y:player.position.y-110)
         
         //Movimiento del jugador
         if pressedButtons.index(of: left_control) != nil {
@@ -123,7 +186,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if pressedButtons.index(of: jump_control) != nil {
             player.jump()
         }
-
         
     }
     
@@ -232,6 +294,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-        
     
+    //Fisicas Collision&Contact
+    func didBegin(_ contact: SKPhysicsContact) {
+        //Meta
+        let collisionMeta = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        if collisionMeta == PhysicsCategory.PhysPlayer | PhysicsCategory.PhysFinish{
+            print("META")
+        }
+        
+        //Coleccionables
+        let collisionColec = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.PhysColeccionable{
+            print("COLECCIONABLES")
+        }
+    }
+
 }
