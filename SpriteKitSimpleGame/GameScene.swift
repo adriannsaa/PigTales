@@ -1,3 +1,11 @@
+//
+//  GameScene.swift
+//  Pig Tales
+//
+//  Created by Adrian Nuñez Saa.
+//  Copyright © 2017 Adrian Nuñez Saa. All rights reserved.
+//
+
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -12,6 +20,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cam: SKCameraNode!
     var left_control,right_control,jump_control: SKSpriteNode!
     var fondo,finish,elefanteColec,monoColec,jirafaColec,pandaColec: SKSpriteNode!
+    var vida1,vida2,vida3,vidaVacia1,vidaVacia2,vidaVacia3: SKSpriteNode!
+    
+    let friendsLabel = SKLabelNode(fontNamed: "Chalkduster")
+    var ncoleccionables = 0
+    var gameOver = false
     
     //Fisicas
     struct PhysicsCategory{
@@ -47,7 +60,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Creacion de todos los nodos para luego cargarlos todos juntos
     func loadSceneNodes() {
-
         //LEVEL
         guard let fondo = childNode(withName: "FondoRectangulo")
             as? SKSpriteNode else {
@@ -122,12 +134,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
         pandaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
 
+        //Vidas
+        guard let vida1 = childNode(withName: "corazonLleno1")
+            as? SKSpriteNode else {
+                fatalError("vida1 node not loaded")
+        }
+        self.vida1 = vida1
+        guard let vida2 = childNode(withName: "corazonLleno2")
+            as? SKSpriteNode else {
+                fatalError("vida2 node not loaded")
+        }
+        self.vida2 = vida2
+        guard let vida3 = childNode(withName: "corazonLleno3")
+            as? SKSpriteNode else {
+                fatalError("vida3 node not loaded")
+        }
+        self.vida3 = vida3
+        
+        guard let vidaVacia1 = childNode(withName: "corazonVacio_1")
+            as? SKSpriteNode else {
+                fatalError("vidaVacia1 node not loaded")
+        }
+        self.vidaVacia1 = vidaVacia1
+        vidaVacia1.isHidden = true
+        guard let vidaVacia2 = childNode(withName: "corazonVacio_2")
+            as? SKSpriteNode else {
+                fatalError("vidaVacia2 node not loaded")
+        }
+        self.vidaVacia2 = vidaVacia2
+        vidaVacia2.isHidden = true
+        guard let vidaVacia3 = childNode(withName: "corazonVacio_3")
+            as? SKSpriteNode else {
+                fatalError("vidaVacia3 node not loaded")
+        }
+        self.vidaVacia3 = vidaVacia3
+        vidaVacia3.isHidden = true
+        
+        //Contador coleccionables
+        friendsLabel.zPosition = 1
+        self.addChild(friendsLabel)
         
         //JUGADOR
         player = Player(named: "vida3_1")
         player.position = CGPoint(x: -1800, y: -300)
         self.addChild(player)
-        //Jugador contact/collision
+        //Jugador contact-collision
         player.physicsBody?.usesPreciseCollisionDetection = true
         player.physicsBody?.categoryBitMask = PhysicsCategory.PhysPlayer
         player.physicsBody?.contactTestBitMask = PhysicsCategory.PhysFinish | PhysicsCategory.PhysColeccionable
@@ -169,12 +220,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         //Posicion de la camara (Un poco adelantada para ver el mapa)
-        camera?.position = CGPoint(x:player.position.x+150 , y:player.position.y+30)
+        camera?.position = CGPoint(x:player.position.x+50 , y:player.position.y+30)
         
         //Posicion de los controles
-        left_control.position = CGPoint(x:player.position.x-140 , y:player.position.y-110)
-        right_control.position = CGPoint(x:player.position.x+40 , y:player.position.y-110)
-        jump_control.position = CGPoint(x:player.position.x+375 , y:player.position.y-110)
+        left_control.position = CGPoint(x:player.position.x-200 , y:player.position.y-110)
+        right_control.position = CGPoint(x:player.position.x-40 , y:player.position.y-110)
+        jump_control.position = CGPoint(x:player.position.x+275 , y:player.position.y-110)
+        
+        //Contador amigos
+        friendsLabel.position = CGPoint(x:player.position.x-140 , y:player.position.y+175)
+        friendsLabel.text = "Friends: \(ncoleccionables)/4"
+        
+        //Posicion de las vidas
+        vida1.position = CGPoint(x:player.position.x+250 , y:player.position.y+190)
+        vida2.position = CGPoint(x:player.position.x+285 , y:player.position.y+190)
+        vida3.position = CGPoint(x:player.position.x+320 , y:player.position.y+190)
+        vidaVacia1.position = CGPoint(x:player.position.x+250 , y:player.position.y+190)
+        vidaVacia2.position = CGPoint(x:player.position.x+285 , y:player.position.y+190)
+        vidaVacia3.position = CGPoint(x:player.position.x+320 , y:player.position.y+190)
         
         //Movimiento del jugador
         if pressedButtons.index(of: left_control) != nil {
@@ -307,6 +370,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collisionColec = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.PhysColeccionable{
             print("COLECCIONABLES")
+            let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
+            run(colectSound)
+            ncoleccionables += 1
         }
     }
 

@@ -1,8 +1,8 @@
 //
 //  GameLevel1Scene.swift
-//  SpriteKitSimpleGame
+//  Pig Tales
 //
-//  Created by Adrian Nuñez Saa on 3/6/17.
+//  Created by Adrian Nuñez Saa.
 //  Copyright © 2017 Adrian Nuñez Saa. All rights reserved.
 //
 

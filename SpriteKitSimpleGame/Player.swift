@@ -1,8 +1,8 @@
 //
 //  Player.swift
-//  SpriteKitSimpleGame
+//  Pig Tales
 //
-//  Created by Adrian Nuñez Saa on 7/6/17.
+//  Created by Adrian Nuñez Saa.
 //  Copyright © 2017 Adrian Nuñez Saa. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ enum CharacterDirection : Int {
 
 class Player: SKSpriteNode {
     let sprites = SKTextureAtlas(named: "Player")
-    
+    var lives = 3
     
     // Hacia donde mira el personaje
     var currentDirection: CharacterDirection?
@@ -67,27 +67,98 @@ class Player: SKSpriteNode {
             lastDirection = currentDirection
         }
         
-        if !directions.isEmpty && self.currentDirection != nil {
-            switch currentDirection! {
-            case .Left:
-                if tick % 20 < 10 {
-                    self.texture = sprites.textureNamed("vida3_1_left")
-                }
-                else {
-                    self.texture = sprites.textureNamed("vida3_2_left")
-                }
-            case .Right:
-                if tick % 20 < 10 {
-                    self.texture = sprites.textureNamed("vida3_1")
-                }
-                else {
-                    self.texture = sprites.textureNamed("vida3_2")
+        if lives == 3{
+            if !directions.isEmpty && self.currentDirection != nil {
+                switch currentDirection! {
+                case .Left:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida3_1_left")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida3_2_left")
+                    }
+                case .Right:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida3_1")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida3_2")
+                    }
                 }
             }
+            else {
+                currentDirection = nil
+            }
         }
-        else {
-            currentDirection = nil
+        if lives == 2{
+            if !directions.isEmpty && self.currentDirection != nil {
+                switch currentDirection! {
+                case .Left:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida2_1_left")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida2_2_left")
+                    }
+                case .Right:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida2_1")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida2_2")
+                    }
+                }
+            }
+            else {
+                currentDirection = nil
+            }
         }
+        if lives == 1{
+            if !directions.isEmpty && self.currentDirection != nil {
+                switch currentDirection! {
+                case .Left:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida1_1_left")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida1_2_left")
+                    }
+                case .Right:
+                    if tick % 20 < 10 {
+                        self.texture = sprites.textureNamed("vida1_1")
+                    }
+                    else {
+                        self.texture = sprites.textureNamed("vida1_2")
+                    }
+                }
+            }
+            else {
+                currentDirection = nil
+            }
+        }
+
+//        if !directions.isEmpty && self.currentDirection != nil {
+//            switch currentDirection! {
+//            case .Left:
+//                if tick % 20 < 10 {
+//                    self.texture = sprites.textureNamed("vida3_1_left")
+//                }
+//                else {
+//                    self.texture = sprites.textureNamed("vida3_2_left")
+//                }
+//            case .Right:
+//                if tick % 20 < 10 {
+//                    self.texture = sprites.textureNamed("vida3_1")
+//                }
+//                else {
+//                    self.texture = sprites.textureNamed("vida3_2")
+//                }
+//            }
+//        }
+//        else {
+//            currentDirection = nil
+//        }
+        
         
         tick += 1
         if tick > 60 {
@@ -103,6 +174,22 @@ class Player: SKSpriteNode {
             self.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 500))
         }
         
+    }
+    
+    //Perder vidas
+    func loseLives(){
+        lives -= 1
+        
+        if lives == 0{
+            gameOver()
+        }
+    }
+    
+    //GameOver
+    public func gameOver() {
+        let gameOverScene = GameOverScene(fileNamed: "GameOver")
+        let transition = SKTransition.fade(withDuration: 2)
+        self.scene!.view?.presentScene(gameOverScene!, transition: transition)
     }
     
 }

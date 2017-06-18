@@ -1,8 +1,8 @@
 //
 //  Helpers.swift
-//  SpriteKitSimpleGame
+//  Pig Tales
 //
-//  Created by Adrian Nuñez Saa on 15/6/17.
+//  Created by Adrian Nuñez Saa.
 //  Copyright © 2017 Adrian Nuñez Saa. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 
 public func delay (seconds: TimeInterval, completion: @escaping()->Void){
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
-    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
+}
 
 // ********   LEVEL1   ********* //
 public func terreno_1() -> SKSpriteNode{

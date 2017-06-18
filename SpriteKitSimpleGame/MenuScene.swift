@@ -1,10 +1,10 @@
 //
 //  MenuScene.swift
-//  SpriteKitSimpleGame
+//  Pig Tales
 //
 //  Escena que conforma el menu del juego
 //
-//  Created by Adrian Nuñez Saa on 1/6/17.
+//  Created by Adrian Nuñez Saa.
 //  Copyright © 2017 Adrian Nuñez Saa. All rights reserved.
 //
 
