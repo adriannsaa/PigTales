@@ -13,6 +13,7 @@
 		9C426D471EF6EA1E0014A0BD /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */; };
 		9C426D491EF6F1C00014A0BD /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C426D481EF6F1C00014A0BD /* GameOver.sks */; };
 		9C4280141EE061F400C034BB /* MainThemeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4280131EE061F400C034BB /* MainThemeScene.swift */; };
+		9C462F441EF7627C0026F8CB /* Error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C462F431EF7627C0026F8CB /* Error.mp3 */; };
 		9C4D09311EE5909500E895BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4D09301EE5909500E895BC /* Assets.xcassets */; };
 		9C56F0901EE76F2C00832A4D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56F08F1EE76F2C00832A4D /* Player.swift */; };
 		9C56F0A01EE7968600832A4D /* Player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9C56F09F1EE7968600832A4D /* Player.atlas */; };
@@ -66,6 +67,7 @@
 		9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		9C426D481EF6F1C00014A0BD /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
 		9C4280131EE061F400C034BB /* MainThemeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainThemeScene.swift; sourceTree = "<group>"; };
+		9C462F431EF7627C0026F8CB /* Error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Error.mp3; path = ../../../../../Desktop/Recursos/Musica/Error.mp3; sourceTree = "<group>"; };
 		9C4D09301EE5909500E895BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C56F08F1EE76F2C00832A4D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9C56F09F1EE7968600832A4D /* Player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Player.atlas; path = ../../../../../Desktop/Recursos/Imagenes/Personajes/Sprites.atlas/Player.atlas; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		9CDA61CD1EF0CEA500D32B54 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9C462F431EF7627C0026F8CB /* Error.mp3 */,
 				9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */,
 				9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */,
 				9CDA620C1EF0D24F00D32B54 /* Coleccionable.mp3 */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */,
+				9C462F441EF7627C0026F8CB /* Error.mp3 in Resources */,
 				9CA11F511ED744340036F700 /* Main.storyboard in Resources */,
 				9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */,
 				9CDA621D1EF0D24F00D32B54 /* Falling.mp3 in Resources */,

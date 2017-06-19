@@ -68,6 +68,7 @@ class Player: SKSpriteNode {
         }
         
         if lives == 3{
+            self.texture = sprites.textureNamed("vida3_1")
             if !directions.isEmpty && self.currentDirection != nil {
                 switch currentDirection! {
                 case .Left:
@@ -91,6 +92,7 @@ class Player: SKSpriteNode {
             }
         }
         if lives == 2{
+            self.texture = sprites.textureNamed("vida2_2")
             if !directions.isEmpty && self.currentDirection != nil {
                 switch currentDirection! {
                 case .Left:
@@ -114,6 +116,7 @@ class Player: SKSpriteNode {
             }
         }
         if lives == 1{
+            self.texture = sprites.textureNamed("vida1_2")
             if !directions.isEmpty && self.currentDirection != nil {
                 switch currentDirection! {
                 case .Left:
@@ -136,30 +139,6 @@ class Player: SKSpriteNode {
                 currentDirection = nil
             }
         }
-
-//        if !directions.isEmpty && self.currentDirection != nil {
-//            switch currentDirection! {
-//            case .Left:
-//                if tick % 20 < 10 {
-//                    self.texture = sprites.textureNamed("vida3_1_left")
-//                }
-//                else {
-//                    self.texture = sprites.textureNamed("vida3_2_left")
-//                }
-//            case .Right:
-//                if tick % 20 < 10 {
-//                    self.texture = sprites.textureNamed("vida3_1")
-//                }
-//                else {
-//                    self.texture = sprites.textureNamed("vida3_2")
-//                }
-//            }
-//        }
-//        else {
-//            currentDirection = nil
-//        }
-        
-        
         tick += 1
         if tick > 60 {
             tick = 0
@@ -179,7 +158,8 @@ class Player: SKSpriteNode {
     //Perder vidas
     func loseLives(){
         lives -= 1
-        
+        let hitSound = SKAction.playSoundFileNamed("Hit.mp3", waitForCompletion: true)
+        run(hitSound)
         if lives == 0{
             gameOver()
         }

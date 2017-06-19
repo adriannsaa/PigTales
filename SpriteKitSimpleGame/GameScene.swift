@@ -16,7 +16,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Scene Nodes
     var player: Player!
-    var level1Signals: SKTileMapNode!
     var cam: SKCameraNode!
     var left_control,right_control,jump_control: SKSpriteNode!
     var fondo,finish,elefanteColec,monoColec,jirafaColec,pandaColec: SKSpriteNode!
@@ -30,10 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     struct PhysicsCategory{
         static let PhysNone: UInt32 = 0
         static let PhysPlayer: UInt32 = 0b1 //1
-        static let PhysTerrain: UInt32 = 0b10 //2
-        static let PhysWater: UInt32 = 0b100 //4
-        static let PhysColeccionable: UInt32 = 0b1000 //8
-        static let PhysFinish: UInt32 = 0b10000 //16
+        static let PhysFinish: UInt32 = 0b10 //2
+        static let CatMono: UInt32 = 0b100 //4
+        static let CatPanda: UInt32 = 0b1000 //8
+        static let CatJirafa: UInt32 = 0b10000 //16
+        static let CatElefante: UInt32 = 0b100000 //32
     }
     
     override func didMove(to view: SKView) {
@@ -54,7 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         delay(seconds: 2.0){
             self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         }
-        
         
     }
     
@@ -98,7 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         elefanteColec.physicsBody = SKPhysicsBody(circleOfRadius: elefanteColec.size.width/2)
         elefanteColec.physicsBody?.isDynamic = false
         elefanteColec.physicsBody?.usesPreciseCollisionDetection = true
-        elefanteColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        elefanteColec.physicsBody?.categoryBitMask = PhysicsCategory.CatElefante
         elefanteColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
         
         guard let monoColec = childNode(withName: "mono")
@@ -109,7 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monoColec.physicsBody = SKPhysicsBody(circleOfRadius: monoColec.size.width/2)
         monoColec.physicsBody?.isDynamic = false
         monoColec.physicsBody?.usesPreciseCollisionDetection = true
-        monoColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        monoColec.physicsBody?.categoryBitMask = PhysicsCategory.CatMono
         monoColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
         
         guard let jirafaColec = childNode(withName: "jirafa")
@@ -120,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         jirafaColec.physicsBody = SKPhysicsBody(circleOfRadius: jirafaColec.size.width/2)
         jirafaColec.physicsBody?.isDynamic = false
         jirafaColec.physicsBody?.usesPreciseCollisionDetection = true
-        jirafaColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        jirafaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatJirafa
         jirafaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
         
         guard let pandaColec = childNode(withName: "panda")
@@ -131,7 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pandaColec.physicsBody = SKPhysicsBody(circleOfRadius: pandaColec.size.width/2)
         pandaColec.physicsBody?.isDynamic = false
         pandaColec.physicsBody?.usesPreciseCollisionDetection = true
-        pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.PhysColeccionable
+        pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatPanda
         pandaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
 
         //Vidas
@@ -181,7 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Jugador contact-collision
         player.physicsBody?.usesPreciseCollisionDetection = true
         player.physicsBody?.categoryBitMask = PhysicsCategory.PhysPlayer
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.PhysFinish | PhysicsCategory.PhysColeccionable
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.PhysFinish | PhysicsCategory.CatPanda | PhysicsCategory.CatElefante | PhysicsCategory.CatJirafa | PhysicsCategory.CatMono
 
         //CAMARA
         guard let cam = childNode(withName: "camera1")
@@ -249,6 +248,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if pressedButtons.index(of: jump_control) != nil {
             player.jump()
         }
+        
+        //Comprobación daños a jugador
+        //Caer
+        if player.position.y < -450{
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("CAE")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+            
+            player.physicsBody?.applyImpulse(CGVector(dx:-200 ,dy: 200))
+            player.position = CGPoint(x: -1800, y: -300)
+
+
+        }
+        
         
     }
     
@@ -363,16 +396,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Meta
         let collisionMeta = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collisionMeta == PhysicsCategory.PhysPlayer | PhysicsCategory.PhysFinish{
-            print("META")
+            if ncoleccionables == 4{
+                let winSound = SKAction.playSoundFileNamed("Win.mp3", waitForCompletion: true)
+                run(winSound)
+                print("META_WIN")
+            }else{
+                let errorSound = SKAction.playSoundFileNamed("Error.mp3", waitForCompletion: true)
+                run(errorSound)
+                print("META_ERROR")
+            }
+
         }
         
         //Coleccionables
         let collisionColec = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.PhysColeccionable{
-            print("COLECCIONABLES")
+        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.CatPanda{
             let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
             run(colectSound)
             ncoleccionables += 1
+            monoColec.removeFromParent()
+            print("MONO")
+        }
+        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.CatJirafa{
+            let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
+            run(colectSound)
+            ncoleccionables += 1
+            jirafaColec.removeFromParent()
+            print("JIRAFA")
+        }
+        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.CatElefante{
+            let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
+            run(colectSound)
+            ncoleccionables += 1
+            elefanteColec.removeFromParent()
+            print("ELEFANTE")
+        }
+        if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.CatMono{
+            let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
+            run(colectSound)
+            ncoleccionables += 1
+            monoColec.removeFromParent()
+            print("MONO")
         }
     }
 
