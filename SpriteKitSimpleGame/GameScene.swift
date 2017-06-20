@@ -20,6 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var left_control,right_control,jump_control: SKSpriteNode!
     var fondo,finish,elefanteColec,monoColec,jirafaColec,pandaColec: SKSpriteNode!
     var vida1,vida2,vida3,vidaVacia1,vidaVacia2,vidaVacia3: SKSpriteNode!
+    var terreno1,terreno2,terreno3: SKSpriteNode!
+    //var terreno1Path,terreno2Path,terreno3Path = CGMutablePath()
     
     let friendsLabel = SKLabelNode(fontNamed: "Chalkduster")
     var ncoleccionables = 0
@@ -35,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         static let CatJirafa: UInt32 = 0b10000 //16
         static let CatElefante: UInt32 = 0b100000 //32
     }
-    
+
     override func didMove(to view: SKView) {
         //Gravedad a cero
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -87,6 +89,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         finish.physicsBody?.usesPreciseCollisionDetection = true
         finish.physicsBody?.categoryBitMask = PhysicsCategory.PhysFinish
         finish.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        //Terreno
+        guard let terreno1 = childNode(withName: "terreno15")
+            as? SKSpriteNode else {
+                fatalError("Terreno1 node not loaded")
+        }
+        self.terreno1 = terreno1
+        let terreno1Path = CGMutablePath()
+        terreno1Path.move(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2))
+        terreno1Path.addLine(to: CGPoint(x: terreno1.size.width/2, y: terreno1.size.height/2))
+        terreno1Path.addLine(to: CGPoint(x: terreno1.size.width/2, y: terreno1.size.height/2.05))
+        terreno1Path.addLine(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2.05))
+        terreno1Path.addLine(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2))
+        terreno1.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno1Path)
+        terreno1.physicsBody?.isDynamic = false
+        terreno1.physicsBody?.usesPreciseCollisionDetection = true
+        
+
+        guard let terreno2 = childNode(withName: "terreno18")
+            as? SKSpriteNode else {
+                fatalError("Terreno2 node not loaded")
+        }
+        self.terreno2 = terreno2
+        let terreno2Path = CGMutablePath()
+        terreno2Path.move(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2))
+        terreno2Path.addLine(to: CGPoint(x: terreno2.size.width/2, y: terreno2.size.height/2))
+        terreno2Path.addLine(to: CGPoint(x: terreno2.size.width/2, y: terreno2.size.height/2.05))
+        terreno2Path.addLine(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2.05))
+        terreno2Path.addLine(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2))
+        terreno2.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno2Path)
+        terreno2.physicsBody?.isDynamic = false
+        terreno2.physicsBody?.usesPreciseCollisionDetection = true
+        
+        
+        guard let terreno3 = childNode(withName: "terreno19")
+            as? SKSpriteNode else {
+                fatalError("Terreno3 node not loaded")
+        }
+        self.terreno3 = terreno3
+        let terreno3Path = CGMutablePath()
+        terreno3Path.move(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2))
+        terreno3Path.addLine(to: CGPoint(x: terreno3.size.width/2, y: terreno3.size.height/2))
+        terreno3Path.addLine(to: CGPoint(x: terreno3.size.width/2, y: terreno3.size.height/2.05))
+        terreno3Path.addLine(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2.05))
+        terreno3Path.addLine(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2))
+        terreno3.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno3Path)
+        terreno3.physicsBody?.isDynamic = false
+        terreno3.physicsBody?.usesPreciseCollisionDetection = true
+        
         
         //Coleccionables
         guard let elefanteColec = childNode(withName: "elefante")
@@ -248,6 +299,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if pressedButtons.index(of: jump_control) != nil {
             player.jump()
         }
+        
+//        //Comprobacion cruzar fisicas
+//        if ((player.physicsBody?.velocity.dy)! < CGFloat(0.0)) {
+//            terreno1.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno1Path)
+//            terreno1.physicsBody?.isDynamic = false
+//            terreno2.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno2Path)
+//            terreno2.physicsBody?.isDynamic = false
+//            terreno3.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno3Path)
+//            terreno3.physicsBody?.isDynamic = false
+//        }else{
+//            terreno1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno1.physicsBody?.isDynamic = false
+//            terreno2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno2.physicsBody?.isDynamic = false
+//            terreno3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno3.physicsBody?.isDynamic = false
+//        }
+//        
+//        //Comprobacion cruzar fisicas
+//        if ((player.physicsBody?.velocity.dy)! < CGFloat(0.0)) {
+//            terreno1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
+//            terreno1.physicsBody?.isDynamic = false
+//            terreno2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
+//            terreno2.physicsBody?.isDynamic = false
+//            terreno3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
+//            terreno3.physicsBody?.isDynamic = false
+//        }else{
+//            terreno1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno1.physicsBody?.isDynamic = false
+//            terreno2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno2.physicsBody?.isDynamic = false
+//            terreno3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
+//            terreno3.physicsBody?.isDynamic = false
+//        }
         
         //Comprobación daños a jugador
         //Caer
@@ -414,8 +499,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
             run(colectSound)
             ncoleccionables += 1
-            monoColec.removeFromParent()
-            print("MONO")
+            pandaColec.removeFromParent()
+            print("PANDA")
         }
         if collisionColec == PhysicsCategory.PhysPlayer | PhysicsCategory.CatJirafa{
             let colectSound = SKAction.playSoundFileNamed("Coleccionable.mp3", waitForCompletion: true)
@@ -439,5 +524,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("MONO")
         }
     }
+    
 
 }
