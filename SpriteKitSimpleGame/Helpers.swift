@@ -13,20 +13,13 @@ public func delay (seconds: TimeInterval, completion: @escaping()->Void){
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 
-// ********   LEVEL1   ********* //
-//        //Comprobacion cruzar fisicas
-//        if ((player.physicsBody?.velocity.dy)! < CGFloat(0.0)) {
-//            terreno1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
-//            terreno1.physicsBody?.isDynamic = false
-//            terreno2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
-//            terreno2.physicsBody?.isDynamic = false
-//            terreno3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0.01))
-//            terreno3.physicsBody?.isDynamic = false
-//        }else{
-//            terreno1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
-//            terreno1.physicsBody?.isDynamic = false
-//            terreno2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
-//            terreno2.physicsBody?.isDynamic = false
-//            terreno3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: terreno1.size.width, height: 0))
-//            terreno3.physicsBody?.isDynamic = false
-//        }
+//PAUSE
+//if pause_control.contains(location) && estaPausado == true {
+//    estaPausado = false
+//    self.scene?.view?.isPaused = false
+//}
+//if pause_control.contains(location) && estaPausado == false {
+//    estaPausado = true
+//    self.scene?.view?.isPaused = true
+//}
+

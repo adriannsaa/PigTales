@@ -160,6 +160,7 @@ class Player: SKSpriteNode {
         lives -= 1
         let hitSound = SKAction.playSoundFileNamed("Hit.mp3", waitForCompletion: true)
         run(hitSound)
+        self.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: 300))
         if lives == 0{
             gameOver()
         }

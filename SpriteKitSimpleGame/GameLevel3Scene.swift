@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  GameLevel3Scene.swift
 //  Pig Tales
 //
 //  Created by Adrian Nuñez Saa.
@@ -8,8 +8,7 @@
 
 import SpriteKit
 
-class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
-    
+class GameLevel3Scene: SKScene, SKPhysicsContactDelegate {
     // Touch location
     var targetLocation: CGPoint = .zero
     var pressedButtons = [SKSpriteNode]()
@@ -20,7 +19,8 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
     var left_control,right_control,jump_control: SKSpriteNode!
     var fondo,finish,elefanteColec,monoColec,jirafaColec,pandaColec: SKSpriteNode!
     var vida1,vida2,vida3,vidaVacia1,vidaVacia2,vidaVacia3: SKSpriteNode!
-    var terreno1,terreno2,terreno3: SKSpriteNode!
+    var tierraFalsa1,tierraFalsa2,tierraFalsa3: SKSpriteNode!
+    var fantasma,murcielago1,murcielago2: SKSpriteNode!
     
     let friendsLabel = SKLabelNode(fontNamed: "Chalkduster")
     var ncoleccionables = 0
@@ -77,7 +77,7 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
         fondo.physicsBody?.isDynamic = false
         
         //Meta
-        guard let finish = childNode(withName: "FinishSign")
+        guard let finish = childNode(withName: "signalFinish")
             as? SKSpriteNode else {
                 fatalError("Finish node not loaded")
         }
@@ -90,53 +90,29 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
         finish.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
         
         //Terreno
-        guard let terreno1 = childNode(withName: "terreno15")
+        guard let tierraFalsa1 = childNode(withName: "tierraFalsa1")
             as? SKSpriteNode else {
-                fatalError("Terreno1 node not loaded")
+                fatalError("tierraFalsa1 node not loaded")
         }
-        self.terreno1 = terreno1
-        let terreno1Path = CGMutablePath()
-        terreno1Path.move(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2))
-        terreno1Path.addLine(to: CGPoint(x: terreno1.size.width/2, y: terreno1.size.height/2))
-        terreno1Path.addLine(to: CGPoint(x: terreno1.size.width/2, y: terreno1.size.height/2.05))
-        terreno1Path.addLine(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2.05))
-        terreno1Path.addLine(to: CGPoint(x: -terreno1.size.width/2, y: terreno1.size.height/2))
-        terreno1.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno1Path)
-        terreno1.physicsBody?.isDynamic = false
-        terreno1.physicsBody?.usesPreciseCollisionDetection = true
+        self.tierraFalsa1 = tierraFalsa1
+        tierraFalsa1.physicsBody?.isDynamic = false
+        tierraFalsa1.physicsBody?.usesPreciseCollisionDetection = true
         
-        
-        guard let terreno2 = childNode(withName: "terreno18")
+        guard let tierraFalsa2 = childNode(withName: "tierraFalsa2")
             as? SKSpriteNode else {
-                fatalError("Terreno2 node not loaded")
+                fatalError("tierraFalsa2 node not loaded")
         }
-        self.terreno2 = terreno2
-        let terreno2Path = CGMutablePath()
-        terreno2Path.move(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2))
-        terreno2Path.addLine(to: CGPoint(x: terreno2.size.width/2, y: terreno2.size.height/2))
-        terreno2Path.addLine(to: CGPoint(x: terreno2.size.width/2, y: terreno2.size.height/2.05))
-        terreno2Path.addLine(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2.05))
-        terreno2Path.addLine(to: CGPoint(x: -terreno2.size.width/2, y: terreno2.size.height/2))
-        terreno2.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno2Path)
-        terreno2.physicsBody?.isDynamic = false
-        terreno2.physicsBody?.usesPreciseCollisionDetection = true
+        self.tierraFalsa2 = tierraFalsa2
+        tierraFalsa2.physicsBody?.isDynamic = false
+        tierraFalsa2.physicsBody?.usesPreciseCollisionDetection = true
         
-        
-        guard let terreno3 = childNode(withName: "terreno19")
+        guard let tierraFalsa3 = childNode(withName: "tierraFalsa3")
             as? SKSpriteNode else {
-                fatalError("Terreno3 node not loaded")
+                fatalError("tierraFalsa3 node not loaded")
         }
-        self.terreno3 = terreno3
-        let terreno3Path = CGMutablePath()
-        terreno3Path.move(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2))
-        terreno3Path.addLine(to: CGPoint(x: terreno3.size.width/2, y: terreno3.size.height/2))
-        terreno3Path.addLine(to: CGPoint(x: terreno3.size.width/2, y: terreno3.size.height/2.05))
-        terreno3Path.addLine(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2.05))
-        terreno3Path.addLine(to: CGPoint(x: -terreno3.size.width/2, y: terreno3.size.height/2))
-        terreno3.physicsBody = SKPhysicsBody(edgeLoopFrom: terreno3Path)
-        terreno3.physicsBody?.isDynamic = false
-        terreno3.physicsBody?.usesPreciseCollisionDetection = true
-        
+        self.tierraFalsa3 = tierraFalsa3
+        tierraFalsa3.physicsBody?.isDynamic = false
+        tierraFalsa3.physicsBody?.usesPreciseCollisionDetection = true
         
         //Coleccionables
         guard let elefanteColec = childNode(withName: "elefante")
@@ -223,9 +199,47 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
         friendsLabel.zPosition = 1
         self.addChild(friendsLabel)
         
+        //Monstruos
+        guard let fantasma = childNode(withName: "fantasma1")
+            as? SKSpriteNode else {
+                fatalError("fantasma1 node not loaded")
+        }
+        self.fantasma = fantasma
+        fantasma.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: fantasma.size.width,
+                                                               height: fantasma.size.height))
+        fantasma.physicsBody?.isDynamic = false
+        fantasma.physicsBody?.usesPreciseCollisionDetection = true
+        fantasma.position = CGPoint(x:343.482 , y:343.526)
+        let actualDurationFantasma = random(min: CGFloat(4.0), max: CGFloat(7.0))
+        let actionMoveFantasma = SKAction.move(to: CGPoint(x: -700, y: fantasma.position.y), duration: TimeInterval(actualDurationFantasma))
+        let actionMoveFantasmaDone = SKAction.removeFromParent()
+        fantasma.run(SKAction.sequence([actionMoveFantasma, actionMoveFantasmaDone]))
+        
+        guard let murcielago1 = childNode(withName: "murcielago1")
+            as? SKSpriteNode else {
+                fatalError("murcielago1 node not loaded")
+        }
+        self.murcielago1 = murcielago1
+        murcielago1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: murcielago1.size.width,
+                                                                 height: murcielago1.size.height))
+        murcielago1.physicsBody?.isDynamic = false
+        murcielago1.physicsBody?.usesPreciseCollisionDetection = true
+        murcielago1.position = CGPoint(x:316.859 , y:-43.839)
+        
+        guard let murcielago2 = childNode(withName: "murcielago2")
+            as? SKSpriteNode else {
+                fatalError("murcielago2 node not loaded")
+        }
+        self.murcielago2 = murcielago2
+        murcielago2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: murcielago2.size.width,
+                                                                    height: murcielago2.size.height))
+        murcielago2.physicsBody?.isDynamic = false
+        murcielago2.physicsBody?.usesPreciseCollisionDetection = true
+        murcielago2.position = CGPoint(x:-138.694 , y:-43.839)
+        
         //JUGADOR
         player = Player(named: "vida3_1")
-        player.position = CGPoint(x: -1800, y: -300)
+        player.position = CGPoint(x: -350, y: 450)
         self.addChild(player)
         //Jugador contact-collision
         player.physicsBody?.usesPreciseCollisionDetection = true
@@ -259,12 +273,12 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
         self.jump_control = jump_control
         
         //SONIDO
-        let backgroundMusic = SKAudioNode(fileNamed: "Bosque.mp3")
+        let backgroundMusic = SKAudioNode(fileNamed: "Cementerio.mp3")
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
         
     }
-    
+
     //Realiza cualquier actualizacion que deba ocurrir antes de evaluar las acciones de la escena (Se realiza en cada frame
     override func update(_ currentTime: TimeInterval) {
         
@@ -298,10 +312,24 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
         if pressedButtons.index(of: jump_control) != nil {
             player.jump()
         }
+
+        //Murcielagos cayendo
+        if player.position.x < 398 && player.position.y < -43.839 {
+            let actualDurationMurcielago1 = random(min: CGFloat(1.0), max: CGFloat(2.0))
+            let actionMoveMurcielago1 = SKAction.move(to: CGPoint(x: murcielago1.position.x, y: -480), duration: TimeInterval(actualDurationMurcielago1))
+            let actionMoveMurcielago1Done = SKAction.removeFromParent()
+            murcielago1.run(SKAction.sequence([actionMoveMurcielago1, actionMoveMurcielago1Done]))
+        }
+        if player.position.x < -50 && player.position.y < -43.839 {
+            let actualDurationMurcielago2 = random(min: CGFloat(1.0), max: CGFloat(2.0))
+            let actionMoveMurcielago2 = SKAction.move(to: CGPoint(x: murcielago2.position.x, y: -480), duration: TimeInterval(actualDurationMurcielago2))
+            let actionMoveMurcielago2Done = SKAction.removeFromParent()
+            murcielago2.run(SKAction.sequence([actionMoveMurcielago2, actionMoveMurcielago2Done]))
+        }
         
-        //Comprobación daños a jugador
-        //Caer
-        if player.position.y < -450{
+        //Agujeros
+        if player.position.y < -935 && player.position.x < -250 {
+            tierraFalsa1.isHidden = true
             if player.lives == 3{
                 player.texture = SKTexture(imageNamed: "vida2_3")
             }
@@ -325,14 +353,43 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
                 vida1.isHidden = true
                 vidaVacia1.isHidden = false
             }
-            player.position = CGPoint(x: -1800, y: -300)
-            
-            
-        }
+            player.position = CGPoint(x: -350, y: 450)
+        }else{tierraFalsa1.isHidden = false}
         
+        if player.position.y < -935 && player.position.x < 320 {
+            tierraFalsa2.isHidden = true
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("CAE")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+            player.position = CGPoint(x: -350, y: 450)
+        }else{tierraFalsa2.isHidden = false}
+        
+        if player.position.y < -935 && player.position.x > 320 {
+            tierraFalsa3.isHidden = true
+        }else{tierraFalsa3.isHidden = false}
         
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Para cada vez que toquemos la pantalla
         for touch: AnyObject in touches {
@@ -449,14 +506,94 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
                 run(winSound)
                 print("META_WIN")
                 delay(seconds: 2.5){
-                    let level2Scene = GameLevel2Scene(fileNamed: "GameLevel_2")
+                    let level3Scene = GameLevel3Scene(fileNamed: "GameLevel_3")
                     let transition = SKTransition.reveal(with: .left, duration: 1.0)
-                    self.scene!.view?.presentScene(level2Scene!, transition: transition)
+                    self.scene!.view?.presentScene(level3Scene!, transition: transition)
                 }
             }else{
                 let errorSound = SKAction.playSoundFileNamed("Error.mp3", waitForCompletion: true)
                 run(errorSound)
                 print("META_ERROR")
+            }
+            
+        }
+        
+        //Contacto fantasma y murcielagos
+        if (contact.bodyA.node?.name == "fantasma1"){
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("FANTASMA")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+
+        }
+        if (contact.bodyA.node?.name == "murcielago1"){
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("MURCIELAGO1")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+            
+        }
+        if (contact.bodyA.node?.name == "murcielago2"){
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("MURCIELAGO2")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
             }
             
         }
@@ -492,6 +629,15 @@ class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
             print("MONO")
         }
     }
+
+    //Funciones random para generar aleatorios
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
     
-    
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
+    }
+
+
 }

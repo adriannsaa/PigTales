@@ -29,7 +29,7 @@ class MenuScene: SKScene{
     }
     
     private func startGame() {
-        let level1 = GameLeve1Scene(fileNamed: "GameLevel_1")
+        let level1 = GameLevel3Scene(fileNamed: "GameLevel_3")
         let transition = SKTransition.doorsOpenVertical(withDuration: 2)
         let newGameSound = SKAction.playSoundFileNamed("MenuSelectionClick.mp3", waitForCompletion: true)
         run(newGameSound)

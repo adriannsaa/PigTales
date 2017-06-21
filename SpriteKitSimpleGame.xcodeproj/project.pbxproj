@@ -42,6 +42,8 @@
 		9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */; };
 		9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */; };
 		9CDA62251EF0D25000D32B54 /* Win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CDA62171EF0D24F00D32B54 /* Win.mp3 */; };
+		9CE358F91EFA127D0096F37B /* GameLevel3Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE358F81EFA127C0096F37B /* GameLevel3Scene.swift */; };
+		9CE358FB1EFA12D80096F37B /* GameLevel_3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9CE358FA1EFA12D80096F37B /* GameLevel_3.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		9CDA62151EF0D24F00D32B54 /* MenuMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuMusic.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuMusic.mp3; sourceTree = "<group>"; };
 		9CDA62161EF0D24F00D32B54 /* MenuSelectionClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MenuSelectionClick.mp3; path = ../../../../../Desktop/Recursos/Musica/MenuSelectionClick.mp3; sourceTree = "<group>"; };
 		9CDA62171EF0D24F00D32B54 /* Win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Win.mp3; path = ../../../../../Desktop/Recursos/Musica/Win.mp3; sourceTree = "<group>"; };
+		9CE358F81EFA127C0096F37B /* GameLevel3Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel3Scene.swift; sourceTree = "<group>"; };
+		9CE358FA1EFA12D80096F37B /* GameLevel_3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameLevel_3.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,9 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				9C61BD2C1EE0DEB40075F7C1 /* MainMenu.sks */,
-				9C1C7D141EF2EEDD00076016 /* GameLevel_1.sks */,
 				9C426D481EF6F1C00014A0BD /* GameOver.sks */,
+				9C1C7D141EF2EEDD00076016 /* GameLevel_1.sks */,
 				9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */,
+				9CE358FA1EFA12D80096F37B /* GameLevel_3.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				9C4280131EE061F400C034BB /* MainThemeScene.swift */,
 				9C5B32C31EE2530000C8B835 /* GameLevel1Scene.swift */,
 				9C2C4AB51EF89B91008565AD /* GameLevel2Scene.swift */,
+				9CE358F81EFA127C0096F37B /* GameLevel3Scene.swift */,
 				9C56F08F1EE76F2C00832A4D /* Player.swift */,
 				9C56F0A11EE79C3100832A4D /* GameControls.swift */,
 				9C1C7D121EF2E3F000076016 /* Helpers.swift */,
@@ -362,6 +368,7 @@
 				9CDA621F1EF0D25000D32B54 /* GameOver.mp3 in Resources */,
 				9CDA621B1EF0D24F00D32B54 /* Congratulations.mp3 in Resources */,
 				9C1C7D151EF2EEDD00076016 /* GameLevel_1.sks in Resources */,
+				9CE358FB1EFA12D80096F37B /* GameLevel_3.sks in Resources */,
 				9CDA621A1EF0D24F00D32B54 /* Coleccionable.mp3 in Resources */,
 				9CDA62201EF0D25000D32B54 /* Hielo.mp3 in Resources */,
 				9CDA62191EF0D24F00D32B54 /* Cementerio.mp3 in Resources */,
@@ -404,6 +411,7 @@
 				9C3F65FB1EDF7B5500A786D3 /* MenuScene.swift in Sources */,
 				9CA11F4E1ED744340036F700 /* GameViewController.swift in Sources */,
 				9C5B32C41EE2530000C8B835 /* GameLevel1Scene.swift in Sources */,
+				9CE358F91EFA127D0096F37B /* GameLevel3Scene.swift in Sources */,
 				9C1C7D131EF2E3F000076016 /* Helpers.swift in Sources */,
 				9C56F0901EE76F2C00832A4D /* Player.swift in Sources */,
 				9CA11F461ED744340036F700 /* AppDelegate.swift in Sources */,
