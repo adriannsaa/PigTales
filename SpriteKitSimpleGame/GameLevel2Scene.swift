@@ -495,7 +495,7 @@ class GameLevel2Scene: SKScene, SKPhysicsContactDelegate {
                 vida1.isHidden = true
                 vidaVacia1.isHidden = false
             }
-            player.position = CGPoint(x: -800, y: -800)
+
         }
         
         //Hielo

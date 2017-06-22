@@ -13,6 +13,8 @@
 		9C1C7D151EF2EEDD00076016 /* GameLevel_1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C7D141EF2EEDD00076016 /* GameLevel_1.sks */; };
 		9C2C4AB61EF89B91008565AD /* GameLevel2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C4AB51EF89B91008565AD /* GameLevel2Scene.swift */; };
 		9C2C4AB81EF89C1D008565AD /* GameLevel_2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */; };
+		9C2D4ADB1EFB571B0036B49B /* OpenDoor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D4AD91EFB571B0036B49B /* OpenDoor.mp3 */; };
+		9C2D4ADC1EFB571B0036B49B /* Teleport.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D4ADA1EFB571B0036B49B /* Teleport.mp3 */; };
 		9C3F65FB1EDF7B5500A786D3 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F65FA1EDF7B5500A786D3 /* MenuScene.swift */; };
 		9C426D471EF6EA1E0014A0BD /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */; };
 		9C426D491EF6F1C00014A0BD /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C426D481EF6F1C00014A0BD /* GameOver.sks */; };
@@ -72,6 +74,8 @@
 		9C1C7D141EF2EEDD00076016 /* GameLevel_1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameLevel_1.sks; sourceTree = "<group>"; };
 		9C2C4AB51EF89B91008565AD /* GameLevel2Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel2Scene.swift; sourceTree = "<group>"; };
 		9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameLevel_2.sks; sourceTree = "<group>"; };
+		9C2D4AD91EFB571B0036B49B /* OpenDoor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = OpenDoor.mp3; path = ../../../../../Desktop/Recursos/Musica/OpenDoor.mp3; sourceTree = "<group>"; };
+		9C2D4ADA1EFB571B0036B49B /* Teleport.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Teleport.mp3; path = ../../../../../Desktop/Recursos/Musica/Teleport.mp3; sourceTree = "<group>"; };
 		9C3F65FA1EDF7B5500A786D3 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		9C426D481EF6F1C00014A0BD /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 		9CDA61CD1EF0CEA500D32B54 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9C2D4AD91EFB571B0036B49B /* OpenDoor.mp3 */,
+				9C2D4ADA1EFB571B0036B49B /* Teleport.mp3 */,
 				9C462F431EF7627C0026F8CB /* Error.mp3 */,
 				9CDA620A1EF0D24F00D32B54 /* Bosque.mp3 */,
 				9CDA620B1EF0D24F00D32B54 /* Cementerio.mp3 */,
@@ -366,7 +372,9 @@
 			files = (
 				9CDA62241EF0D25000D32B54 /* MenuSelectionClick.mp3 in Resources */,
 				9C462F441EF7627C0026F8CB /* Error.mp3 in Resources */,
+				9C2D4ADB1EFB571B0036B49B /* OpenDoor.mp3 in Resources */,
 				9CA11F511ED744340036F700 /* Main.storyboard in Resources */,
+				9C2D4ADC1EFB571B0036B49B /* Teleport.mp3 in Resources */,
 				9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */,
 				9CDA621D1EF0D24F00D32B54 /* Falling.mp3 in Resources */,
 				9CDA621C1EF0D24F00D32B54 /* Desierto.mp3 in Resources */,

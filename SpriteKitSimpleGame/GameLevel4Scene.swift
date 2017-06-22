@@ -21,11 +21,12 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
     var vida1,vida2,vida3,vidaVacia1,vidaVacia2,vidaVacia3: SKSpriteNode!
     var intVerde1,intVerde2,intVerde3,intVerde4,intRojo1,intRojo2,intRojo3,intRojo4: SKSpriteNode!
     var puertaV1,puertaV2,puertaV3,puertaV4,puertaC1,puertaC2,puertaC3,puertaC4: SKSpriteNode!
-    var pinchos,sierra,teleporter: SKSpriteNode!
+    var pinchos1,pinchos2,pinchos3,pinchos4,pinchosTecho,sierra: SKSpriteNode!
     
     let friendsLabel = SKLabelNode(fontNamed: "Chalkduster")
     var ncoleccionables = 0
     var gameOver = false
+    let bucleInfinitoSierra = 1
     
     //Fisicas
     struct PhysicsCategory{
@@ -89,6 +90,21 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
         finish.physicsBody?.usesPreciseCollisionDetection = true
         finish.physicsBody?.categoryBitMask = PhysicsCategory.PhysFinish
         finish.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+        
+        //Sierra
+        guard let sierra = childNode(withName: "sierra")
+            as? SKSpriteNode else {
+                fatalError("sierra node not loaded")
+        }
+        self.sierra = sierra
+        sierra.physicsBody = SKPhysicsBody(circleOfRadius: sierra.size.width/2)
+        sierra.physicsBody?.isDynamic = false
+        sierra.physicsBody?.usesPreciseCollisionDetection = true
+            //Movimiento sierra
+        let actionMoveSierra = SKAction.move(to: CGPoint(x: -333.426, y: sierra.position.y), duration: TimeInterval(CGFloat(2.0)))
+        let actionMoveSierraBack = SKAction.move(to: CGPoint(x: -589.426, y: sierra.position.y), duration: TimeInterval(CGFloat(2.0)))
+        sierra.run(SKAction.repeatForever(SKAction.sequence([actionMoveSierra, actionMoveSierraBack])))
+
         
         //Puertas e Interruptores
         guard let intRojo1 = childNode(withName: "botonCerrado1")
@@ -155,55 +171,47 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
         }
         self.puertaC4 = puertaC4
         
-        //Coleccionables
-        guard let elefanteColec = childNode(withName: "elefante")
+        //Pinchos
+        guard let pinchos1 = childNode(withName: "pinchos1")
             as? SKSpriteNode else {
-                fatalError("Elefante node not loaded")
+                fatalError("pinchos1 node not loaded")
         }
-        self.elefanteColec = elefanteColec
-        elefanteColec.physicsBody = SKPhysicsBody(circleOfRadius: elefanteColec.size.width/2)
-        elefanteColec.physicsBody?.isDynamic = false
-        elefanteColec.physicsBody?.usesPreciseCollisionDetection = true
-        elefanteColec.physicsBody?.categoryBitMask = PhysicsCategory.CatElefante
-        elefanteColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
-        elefanteColec.isHidden = true
+        self.pinchos1 = pinchos1
+        pinchos1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pinchos1.size.width/2,
+                                                               height: pinchos1.size.height/2))
+        pinchos1.physicsBody?.isDynamic = false
+        pinchos1.physicsBody?.usesPreciseCollisionDetection = true
         
-        guard let monoColec = childNode(withName: "mono")
+        guard let pinchos2 = childNode(withName: "pinchos2")
             as? SKSpriteNode else {
-                fatalError("Mono node not loaded")
+                fatalError("pinchos2 node not loaded")
         }
-        self.monoColec = monoColec
-        monoColec.physicsBody = SKPhysicsBody(circleOfRadius: monoColec.size.width/2)
-        monoColec.physicsBody?.isDynamic = false
-        monoColec.physicsBody?.usesPreciseCollisionDetection = true
-        monoColec.physicsBody?.categoryBitMask = PhysicsCategory.CatMono
-        monoColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
-        monoColec.isHidden = true
+        self.pinchos2 = pinchos2
+        pinchos2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pinchos2.size.width/2,
+                                                                 height: pinchos2.size.height/2))
+        pinchos2.physicsBody?.isDynamic = false
+        pinchos2.physicsBody?.usesPreciseCollisionDetection = true
         
-        guard let jirafaColec = childNode(withName: "jirafa")
+        guard let pinchos3 = childNode(withName: "pinchos3")
             as? SKSpriteNode else {
-                fatalError("Jirafa node not loaded")
+                fatalError("pinchos3 node not loaded")
         }
-        self.jirafaColec = jirafaColec
-        jirafaColec.physicsBody = SKPhysicsBody(circleOfRadius: jirafaColec.size.width/2)
-        jirafaColec.physicsBody?.isDynamic = false
-        jirafaColec.physicsBody?.usesPreciseCollisionDetection = true
-        jirafaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatJirafa
-        jirafaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
-        jirafaColec.isHidden = true
+        self.pinchos3 = pinchos3
+        pinchos3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pinchos3.size.width/2,
+                                                                 height: pinchos3.size.height/2))
+        pinchos3.physicsBody?.isDynamic = false
+        pinchos3.physicsBody?.usesPreciseCollisionDetection = true
         
-        guard let pandaColec = childNode(withName: "panda")
+        guard let pinchos4 = childNode(withName: "pinchos4")
             as? SKSpriteNode else {
-                fatalError("Panda node not loaded")
+                fatalError("pinchos4 node not loaded")
         }
-        self.pandaColec = pandaColec
-        pandaColec.physicsBody = SKPhysicsBody(circleOfRadius: pandaColec.size.width/2)
-        pandaColec.physicsBody?.isDynamic = false
-        pandaColec.physicsBody?.usesPreciseCollisionDetection = true
-        pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatPanda
-        pandaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
-        pandaColec.isHidden = true
-        
+        self.pinchos4 = pinchos4
+        pinchos4.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pinchos4.size.width/2,
+                                                                 height: pinchos4.size.height/2))
+        pinchos4.physicsBody?.isDynamic = false
+        pinchos4.physicsBody?.usesPreciseCollisionDetection = true
+
         //Vidas
         guard let vida1 = childNode(withName: "corazonLleno1")
             as? SKSpriteNode else {
@@ -320,6 +328,42 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
             player.jump()
         }
         
+        //Comprobación daños a jugador
+        //Caer
+        if player.position.y < -850{
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            print("CAE")
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+            player.position = CGPoint(x: -830.694, y: 350)
+        }
+        
+        //Teletransportarse
+        if player.position.x < -850 && player.position.y < -600{
+            print("Teleporter")
+            let teleportSound = SKAction.playSoundFileNamed("Teleport.mp3", waitForCompletion: true)
+            run(teleportSound)
+            player.position = CGPoint(x: -960, y: 188.465)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -450,13 +494,157 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        //Puertas e Interruptores
-        if (contact.bodyA.node?.name == "intRojo3"){
+        //Daños Sierra
+        if (contact.bodyA.node?.name == "sierra"){
+            print("Sierra")
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+        }
+        
+        //Daños Pinchos
+        if (contact.bodyA.node?.name == "pinchosTecho"){
+            print("PinchoTecho")
+            player.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: -600))
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+        }
+        if (contact.bodyA.node?.name == "pinchos1") || (contact.bodyA.node?.name == "pinchos2") || (contact.bodyA.node?.name == "pinchos3") || (contact.bodyA.node?.name == "pinchos4") {
+            print("Pinchos")
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLives()
+            
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+        }
+        
+        //Puertas e Interruptores - Coleccionables en las puertas
+        if (contact.bodyA.node?.name == "botonCerrado1"){
+            let openDoorSound1 = SKAction.playSoundFileNamed("OpenDoor.mp3", waitForCompletion: true)
+            run(openDoorSound1)
             print("Abre Puerta 1")
             puertaC1.removeFromParent()
-            monoColec.isHidden = false
+            guard let monoColec = childNode(withName: "mono")
+                as? SKSpriteNode else {
+                    fatalError("Mono node not loaded")
+            }
+            self.monoColec = monoColec
+            monoColec.physicsBody = SKPhysicsBody(circleOfRadius: monoColec.size.width/2)
+            monoColec.physicsBody?.isDynamic = false
+            monoColec.physicsBody?.usesPreciseCollisionDetection = true
+            monoColec.physicsBody?.categoryBitMask = PhysicsCategory.CatMono
+            monoColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
             intRojo1.removeFromParent()
-            
+        }
+        if (contact.bodyA.node?.name == "botonCerrado2"){
+            let openDoorSound2 = SKAction.playSoundFileNamed("OpenDoor.mp3", waitForCompletion: true)
+            run(openDoorSound2)
+            print("Abre Puerta 2")
+            puertaC2.removeFromParent()
+            guard let jirafaColec = childNode(withName: "jirafa")
+                as? SKSpriteNode else {
+                    fatalError("Jirafa node not loaded")
+            }
+            self.jirafaColec = jirafaColec
+            jirafaColec.physicsBody = SKPhysicsBody(circleOfRadius: jirafaColec.size.width/2)
+            jirafaColec.physicsBody?.isDynamic = false
+            jirafaColec.physicsBody?.usesPreciseCollisionDetection = true
+            jirafaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatJirafa
+            jirafaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+            intRojo2.removeFromParent()
+        }
+        if (contact.bodyA.node?.name == "botonCerrado3"){
+            let openDoorSound3 = SKAction.playSoundFileNamed("OpenDoor.mp3", waitForCompletion: true)
+            run(openDoorSound3)
+            print("Abre Puerta 3")
+            puertaC3.removeFromParent()
+            guard let elefanteColec = childNode(withName: "elefante")
+                as? SKSpriteNode else {
+                    fatalError("Elefante node not loaded")
+            }
+            self.elefanteColec = elefanteColec
+            elefanteColec.physicsBody = SKPhysicsBody(circleOfRadius: elefanteColec.size.width/2)
+            elefanteColec.physicsBody?.isDynamic = false
+            elefanteColec.physicsBody?.usesPreciseCollisionDetection = true
+            elefanteColec.physicsBody?.categoryBitMask = PhysicsCategory.CatElefante
+            elefanteColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+            intRojo3.removeFromParent()
+        }
+        if (contact.bodyA.node?.name == "botonCerrado4"){
+            let openDoorSound4 = SKAction.playSoundFileNamed("OpenDoor.mp3", waitForCompletion: true)
+            run(openDoorSound4)
+            print("Abre Puerta 4")
+            puertaC4.removeFromParent()
+            guard let pandaColec = childNode(withName: "panda")
+                as? SKSpriteNode else {
+                    fatalError("Panda node not loaded")
+            }
+            self.pandaColec = pandaColec
+            pandaColec.physicsBody = SKPhysicsBody(circleOfRadius: pandaColec.size.width/2)
+            pandaColec.physicsBody?.isDynamic = false
+            pandaColec.physicsBody?.usesPreciseCollisionDetection = true
+            pandaColec.physicsBody?.categoryBitMask = PhysicsCategory.CatPanda
+            pandaColec.physicsBody?.contactTestBitMask = PhysicsCategory.PhysPlayer
+            intRojo4.removeFromParent()
         }
         
         //Coleccionables
