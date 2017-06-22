@@ -101,8 +101,10 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
         sierra.physicsBody?.isDynamic = false
         sierra.physicsBody?.usesPreciseCollisionDetection = true
             //Movimiento sierra
+        let actionSierraGiro1 = SKAction.rotate(byAngle: 360, duration: 1)
         let actionMoveSierra = SKAction.move(to: CGPoint(x: -333.426, y: sierra.position.y), duration: TimeInterval(CGFloat(2.0)))
         let actionMoveSierraBack = SKAction.move(to: CGPoint(x: -589.426, y: sierra.position.y), duration: TimeInterval(CGFloat(2.0)))
+        sierra.run(SKAction.repeatForever(actionSierraGiro1))
         sierra.run(SKAction.repeatForever(SKAction.sequence([actionMoveSierra, actionMoveSierraBack])))
 
         
@@ -482,9 +484,9 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
                 run(winSound)
                 print("META_WIN")
                 delay(seconds: 2.5){
-                    let level4Scene = GameLevel4Scene(fileNamed: "GameLevel_4")
-                    let transition = SKTransition.reveal(with: .left, duration: 1.0)
-                    self.scene!.view?.presentScene(level4Scene!, transition: transition)
+                    let winScene = WinScene(fileNamed: "Win")
+                    let transition = SKTransition.doorsCloseVertical(withDuration: 2)
+                    self.scene!.view?.presentScene(winScene!, transition: transition)
                 }
             }else{
                 let errorSound = SKAction.playSoundFileNamed("Error.mp3", waitForCompletion: true)
@@ -521,11 +523,8 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
                 vidaVacia1.isHidden = false
             }
         }
-        
-        //Daños Pinchos
-        if (contact.bodyA.node?.name == "pinchosTecho"){
-            print("PinchoTecho")
-            player.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: -600))
+        if (contact.bodyB.node?.name == "sierra"){
+            print("Sierra")
             if player.lives == 3{
                 player.texture = SKTexture(imageNamed: "vida2_3")
             }
@@ -536,6 +535,35 @@ class GameLevel4Scene: SKScene, SKPhysicsContactDelegate {
                 player.texture = SKTexture(imageNamed: "vida1_3")
             }
             player.loseLives()
+            
+            if player.lives == 2{
+                vida3.isHidden = true
+                vidaVacia3.isHidden = false
+            }
+            if player.lives == 1{
+                vida2.isHidden = true
+                vidaVacia2.isHidden = false
+            }
+            if player.lives == 0{
+                vida1.isHidden = true
+                vidaVacia1.isHidden = false
+            }
+        }
+        
+        
+        //Daños Pinchos
+        if (contact.bodyA.node?.name == "pinchosTecho"){
+            print("PinchoTecho")
+            if player.lives == 3{
+                player.texture = SKTexture(imageNamed: "vida2_3")
+            }
+            if player.lives == 2{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            if player.lives == 1{
+                player.texture = SKTexture(imageNamed: "vida1_3")
+            }
+            player.loseLivesAbajo()
             
             if player.lives == 2{
                 vida3.isHidden = true

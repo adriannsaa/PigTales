@@ -15,6 +15,8 @@
 		9C2C4AB81EF89C1D008565AD /* GameLevel_2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */; };
 		9C2D4ADB1EFB571B0036B49B /* OpenDoor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D4AD91EFB571B0036B49B /* OpenDoor.mp3 */; };
 		9C2D4ADC1EFB571B0036B49B /* Teleport.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D4ADA1EFB571B0036B49B /* Teleport.mp3 */; };
+		9C2D4ADE1EFC3DC20036B49B /* Win.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C2D4ADD1EFC3DC20036B49B /* Win.sks */; };
+		9C2D4AE01EFC3F300036B49B /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2D4ADF1EFC3F300036B49B /* WinScene.swift */; };
 		9C3F65FB1EDF7B5500A786D3 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3F65FA1EDF7B5500A786D3 /* MenuScene.swift */; };
 		9C426D471EF6EA1E0014A0BD /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */; };
 		9C426D491EF6F1C00014A0BD /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C426D481EF6F1C00014A0BD /* GameOver.sks */; };
@@ -23,7 +25,6 @@
 		9C4D09311EE5909500E895BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4D09301EE5909500E895BC /* Assets.xcassets */; };
 		9C56F0901EE76F2C00832A4D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56F08F1EE76F2C00832A4D /* Player.swift */; };
 		9C56F0A01EE7968600832A4D /* Player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9C56F09F1EE7968600832A4D /* Player.atlas */; };
-		9C56F0A21EE79C3100832A4D /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56F0A11EE79C3100832A4D /* GameControls.swift */; };
 		9C5B32C41EE2530000C8B835 /* GameLevel1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5B32C31EE2530000C8B835 /* GameLevel1Scene.swift */; };
 		9C61BD2D1EE0DEB40075F7C1 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9C61BD2C1EE0DEB40075F7C1 /* MainMenu.sks */; };
 		9C64C1E61EF49D30003F5B58 /* Jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9C64C1E51EF49D30003F5B58 /* Jump.mp3 */; };
@@ -76,6 +77,8 @@
 		9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameLevel_2.sks; sourceTree = "<group>"; };
 		9C2D4AD91EFB571B0036B49B /* OpenDoor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = OpenDoor.mp3; path = ../../../../../Desktop/Recursos/Musica/OpenDoor.mp3; sourceTree = "<group>"; };
 		9C2D4ADA1EFB571B0036B49B /* Teleport.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Teleport.mp3; path = ../../../../../Desktop/Recursos/Musica/Teleport.mp3; sourceTree = "<group>"; };
+		9C2D4ADD1EFC3DC20036B49B /* Win.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Win.sks; sourceTree = "<group>"; };
+		9C2D4ADF1EFC3F300036B49B /* WinScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
 		9C3F65FA1EDF7B5500A786D3 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		9C426D481EF6F1C00014A0BD /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
@@ -84,7 +87,6 @@
 		9C4D09301EE5909500E895BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C56F08F1EE76F2C00832A4D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9C56F09F1EE7968600832A4D /* Player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Player.atlas; path = ../../../../../Desktop/Recursos/Imagenes/Personajes/Sprites.atlas/Player.atlas; sourceTree = "<group>"; };
-		9C56F0A11EE79C3100832A4D /* GameControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
 		9C5B32C31EE2530000C8B835 /* GameLevel1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel1Scene.swift; sourceTree = "<group>"; };
 		9C61BD2C1EE0DEB40075F7C1 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
 		9C64C1E51EF49D30003F5B58 /* Jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Jump.mp3; path = ../../../../../Desktop/Recursos/Musica/Jump.mp3; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				9C2C4AB71EF89C1D008565AD /* GameLevel_2.sks */,
 				9CE358FA1EFA12D80096F37B /* GameLevel_3.sks */,
 				9C0411BE1EFAEAAC00FC49BF /* GameLevel_4.sks */,
+				9C2D4ADD1EFC3DC20036B49B /* Win.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -173,9 +176,9 @@
 				9CE358F81EFA127C0096F37B /* GameLevel3Scene.swift */,
 				9C0411BC1EFAEA5A00FC49BF /* GameLevel4Scene.swift */,
 				9C56F08F1EE76F2C00832A4D /* Player.swift */,
-				9C56F0A11EE79C3100832A4D /* GameControls.swift */,
 				9C1C7D121EF2E3F000076016 /* Helpers.swift */,
 				9C426D461EF6EA1E0014A0BD /* GameOverScene.swift */,
+				9C2D4ADF1EFC3F300036B49B /* WinScene.swift */,
 			);
 			name = "Scene Classes";
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				9C462F441EF7627C0026F8CB /* Error.mp3 in Resources */,
 				9C2D4ADB1EFB571B0036B49B /* OpenDoor.mp3 in Resources */,
 				9CA11F511ED744340036F700 /* Main.storyboard in Resources */,
+				9C2D4ADE1EFC3DC20036B49B /* Win.sks in Resources */,
 				9C2D4ADC1EFB571B0036B49B /* Teleport.mp3 in Resources */,
 				9CDA62231EF0D25000D32B54 /* MenuMusic.mp3 in Resources */,
 				9CDA621D1EF0D24F00D32B54 /* Falling.mp3 in Resources */,
@@ -429,10 +433,10 @@
 				9CE358F91EFA127D0096F37B /* GameLevel3Scene.swift in Sources */,
 				9C1C7D131EF2E3F000076016 /* Helpers.swift in Sources */,
 				9C56F0901EE76F2C00832A4D /* Player.swift in Sources */,
+				9C2D4AE01EFC3F300036B49B /* WinScene.swift in Sources */,
 				9C0411BD1EFAEA5A00FC49BF /* GameLevel4Scene.swift in Sources */,
 				9CA11F461ED744340036F700 /* AppDelegate.swift in Sources */,
 				9C4280141EE061F400C034BB /* MainThemeScene.swift in Sources */,
-				9C56F0A21EE79C3100832A4D /* GameControls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

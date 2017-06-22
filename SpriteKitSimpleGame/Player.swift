@@ -165,6 +165,15 @@ class Player: SKSpriteNode {
             gameOver()
         }
     }
+    func loseLivesAbajo(){
+        lives -= 1
+        let hitSound = SKAction.playSoundFileNamed("Hit.mp3", waitForCompletion: true)
+        run(hitSound)
+        self.physicsBody?.applyImpulse(CGVector(dx:0 ,dy: -200))
+        if lives == 0{
+            gameOver()
+        }
+    }
     
     //GameOver
     public func gameOver() {
