@@ -23,7 +23,7 @@ class WinScene: SKScene{
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
-        if(touchedNode.name == "winNode"){
+        if(touchedNode.name == "finalNode"){
             let menuScene = MenuScene(fileNamed: "MainMenu")
             let transition = SKTransition.reveal(with: .left, duration: 1.0)
             self.scene!.view?.presentScene(menuScene!, transition: transition)

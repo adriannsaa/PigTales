@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameLeve1Scene: SKScene, SKPhysicsContactDelegate {
+class GameLevel1Scene: SKScene, SKPhysicsContactDelegate {
     
     // Touch location
     var targetLocation: CGPoint = .zero
